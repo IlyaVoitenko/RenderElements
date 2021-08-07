@@ -28,6 +28,7 @@ function render (array, container) {
             container.innerHTML+=`
             <div class="row " id="id${idRow}">
                  <div class="mt-4 card text-center col-12 col-md-6 col-lg-3 col-xl-3">
+            <button type="button" class="btn-close deleteDiv"  aria-label="Close"></button>
                     <img src="${i.img}">
                     <p>${i.name}</p>
                     <p>${i.price}</p>
@@ -40,6 +41,7 @@ function render (array, container) {
             let row = document.querySelector(`#id${idRow}`)
             row.innerHTML+=`
             <div class="mt-4 card text-center col-12 col-md-6 col-lg-3 col-xl-3">
+            <button type="button" class="btn-close deleteDiv"   aria-label="Close"></button>
             <img src="${i.img}">
             <p>${i.name}</p>
             <p>${i.price}</p>
@@ -52,6 +54,7 @@ function render (array, container) {
                 let row = document.querySelector(`#id${idRow}`)
                 row.innerHTML+=`
                 <div class="mt-4 card text-center col-12 col-md-6 col-lg-3 col-xl-3">
+                <button type="button" class="btn-close deleteDiv"  aria-label="Close"></button>
                 <img src="${i.img}">
                 <p>${i.name}</p>
                 <p>${i.price}</p>
@@ -61,14 +64,20 @@ function render (array, container) {
                 count = 0
             }
     })
+    
 }
 render(data,container)
+let btnDelete = document.querySelectorAll('.deleteDiv')
+console.log(btnDelete);
+btnDelete.forEach(i => {
+    i.addEventListener('click',(element)=>{
+        let target = element.target
+        target.parentNode.remove()
+    })
+});
 btnModal.addEventListener('click',()=>{
     container.innerHTML=''
-    // imageInputModal.value.split("C:\\fakepath")
-    console.log(imageInputModal.files[0].name);
     data.push({img:imageInputModal.files[0].name,price:priceInputModal.value,name:nameInputModal.value})
-    console.log({data});
     imageInputModal.value = ''
     priceInputModal.value = ''
     nameInputModal.value = ''
